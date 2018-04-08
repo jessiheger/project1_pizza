@@ -10,11 +10,11 @@ var menuText;
 var menuIngredients = "";
 var level = 1;
 var menuIngredientsArray = [];
+var pizzaIngredients = "";
 var pizzaArray = [];
 var nextLevelText;
 var emitter;
-
-
+var toppingsCollected;
 
 function preload () {
     game.load.image('redwhite', 'images/redwhite.jpg');
@@ -50,12 +50,67 @@ function buildMenu () {
     }
 
     menuIngredientsArray.forEach(function(item) {
-        menuIngredients += "- " + item + "\n";
+        menuIngredients += "~ " + item + "\n";
     });
 
-    menu = game.add.text(20, 100, menuIngredients, {font: '26px Arial', fill: 'black'});
-
+    menu = game.add.text(20, 100, menuIngredients, {font: '30px Parisienne, cursive', fill: 'black'});
 }
+
+
+function addToPizza (player, topping) {
+    topping.kill();    
+    // add green check mark next to cheese menu item
+    if (pizzaArray.length !== menuIngredientsArray.length) {
+            pizzaArray.push(topping.key); 
+    }
+    
+    pizzaArray.forEach(function(item) {
+        pizzaIngredients += "~ " + item + "\n";
+    });
+
+    toppingsCollected = game.add.text(20, 300, pizzaIngredients, {font: '30px Parisienne, cursive', fill: 'green'});
+
+    checkWin();
+}
+    // console.log(pizzaArray);
+
+    // if (checkWin()) {
+    //     console.log("Buon Apetito! Press the button to move to the next level.");
+    //     console.log(pizzaArray);
+    //     console.log(menuIngredientsArray)
+    //     // pepperoni.on = false;
+    //     // cheese.on = false;
+    // } else {
+    //     console.log("Try again");
+    //     console.log(pizzaArray);
+    //     console.log(menuIngredientsArray)
+    // }
+
+function goToNextLevel() {
+    clearMenu();
+    clearPizzaArray();
+    level +=1;
+    console.log("level is now " + level);
+    create();
+} 
+
+function checkWin (){
+    // if (menuIngredientsArray === pizzaArray) return true;
+    // if (menuIngredientsArray == null || pizzaArray == null) return false;
+    for (var i = 0; i <= pizzaArray.length; i++) {
+        if (pizzaArray.length >= menuIngredientsArray.length && pizzaArray[i] !== menuIngredientsArray[i]) {
+            console.log("Try again");
+            // console.log(pizzaArray);
+            // console.log(menuIngredientsArray)
+        } else if 
+            (pizzaArray.length === menuIngredientsArray.length && pizzaArray[i] === menuIngredientsArray[i]) {
+            console.log("Buon Apetito! Press the button to move to the next level.");
+            button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
+            }
+        
+    }
+}
+
 
 function create () {
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -72,46 +127,45 @@ function create () {
     cursors = game.input.keyboard.createCursorKeys();
 
 // Button to set next level + reset menu
-    button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
+    // button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
   
 // create menu on screen
-    menuText = game.add.text(20, 50, 'MENU',  { font: '40px Arial', fill: 'black' });
+    menuText = game.add.text(20, 40, 'MENU',  { font: '35px Parisienne, cursive', fill: 'black' });
     buildMenu();
 
+    toppingsCollectedText = game.add.text(20, 250, "TOPPINGS COLLECTED",  { font: '35x Parisienne, cursive', fill: 'black' });
+
 // Toppings fall from sky
-    emitter = game.add.emitter((Math.random() * 600) + 200, -200, 200);
+    emitter = game.add.emitter(game.world.centerX, -200, 200);
     function Emitter(topping) {
         emitter.makeParticles(topping, [0], 10, true, false);
         emitter.gravity = 100;
         emitter.flow(8000, 1000, 2, 50); // 2 particles emitted every 500ms, each particle will live for 8000ms, will emit 10 particles in total then stop.
         // emitter.on = true;
-
     }
 
-
-    // cheese = new Emitter('cheese');
-    // pepperoni = new Emitter('pepperoni');
-
-function setToppingsToRain () { 
-    switch (level) {
-        case 1:
-            cheese = new Emitter('cheese');
-            pepperoni = new Emitter('pepperoni');
-            break;
-        case 2:
-            cheese = new Emitter('cheese');
-            pepperoni = new Emitter('pepperoni');
-            mushroom = new Emitter('mushroom');
-            pepper = new Emitter('pepper');
-            break;
-        case 3:
-            cheese = new Emitter('cheese');
-            pepperoni = new Emitter('pepperoni');
-            olives = new Emitter('olives');
-            onion = new Emitter('onion');
-            basil = new Emitter('basil');
+    function setToppingsToRain () { 
+        switch (level) {
+            case 1:
+                cheese = new Emitter('cheese');
+                pepperoni = new Emitter('pepperoni');
+                break;
+            case 2:
+                cheese = new Emitter('cheese');
+                pepperoni = new Emitter('pepperoni');
+                mushroom = new Emitter('mushroom');
+                olives = new Emitter('olives');
+                pepper = new Emitter('pepper');
+                break;
+            case 3:
+                cheese = new Emitter('cheese');
+                pepperoni = new Emitter('pepperoni');
+                olives = new Emitter('olives');
+                onion = new Emitter('onion');
+                basil = new Emitter('basil');
+        }
     }
-}
+
     setToppingsToRain();
    
 }
@@ -122,52 +176,17 @@ function update () {
     if (cursors.left.isDown) {
         player.body.velocity.x = -400;
     } else if (cursors.right.isDown) {
-        player.body.velocity.x = 300;
+        player.body.velocity.x = 400;
     } else {
         player.animations.stop();
     }
     
     game.physics.arcade.overlap(player, emitter, addToPizza, null, this);
-
 }
 
-function checkWin (){
-    // if (menuIngredientsArray === pizzaArray) return true;
-    // if (menuIngredientsArray == null || pizzaArray == null) return false;
-    // if (menuIngredientsArray.length != pizzaArray.length) return false;
 
-    for (var i = 0; i < menuIngredientsArray.length; i++) {
-        if (menuIngredientsArray[i] !== pizzaArray[i]) return false;
-    }
-    return true;
-}
 
-function addToPizza (player, topping) {
-    topping.kill();    
-    // add green check mark next to cheese menu item
 
-    pizzaArray.push(topping.key);
-    console.log(pizzaArray);
-
-    if (checkWin()) {
-        alert("Buon Apetito! Press the black button to move to the next level.");
-        // pepperoni.on = false;
-        // cheese.on = false;
-    } else {
-        alert("Try again");
-    }
-}
-
-function goToNextLevel() {
-    clearMenu();
-    clearPizzaArray();
-    level +=1;
-    console.log("level is now " + level);
-    console.log("Menu now includes " + menuIngredientsArray);
-    console.log("Pizza now includes" + pizzaArray)
-    // console.log(menuIngredientsArray);
-    create();
-}
 
     
 
