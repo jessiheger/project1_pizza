@@ -11,7 +11,10 @@ function preload () {
     game.load.image('onion', 'images/onion.png');
     game.load.image('pepper', 'images/pepper.png');
     game.load.image('pepperoni', 'images/pepperoni.png');
+    game.load.image('tryAgainArrow', 'images/tryAgainArrow.png');
+    game.load.image('nextArrow', 'images/nextArrow.png');
 }
+
 
 // create the game
 function create () {
@@ -36,6 +39,7 @@ function create () {
 
     // Toppings fall from sky
     emitter = game.add.emitter(game.world.centerX, -200, 200);
+
 
     setToppingsToRain();
     // writes menu ingredints onto page
