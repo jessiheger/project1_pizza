@@ -1,0 +1,18 @@
+var player;
+var cheese, pepperoni, mushroom, basil, onion, pepper;
+var cursors;
+var toppings;
+var menu;
+var menuText;
+var menuIngredients = "";
+var level = 1;
+var menuIngredientsArray = [];
+var ingredientsCollected = "";
+var pizzaArray = [];
+var nextLevelText;
+var emitter;
+var toppingsCollected;
+var win;
+var tryAgain;
+var tryAgainButton;
+var resetLevel;

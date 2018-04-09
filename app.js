@@ -1,24 +1,5 @@
 var game = new Phaser.Game(window.innerWidth, window.innerHeight - 20, Phaser.arcade, '', { preload: preload, create: create, update: update });
 
-var player;
-var cheese, pepperoni, mushroom, basil, onion, pepper;
-var cursors;
-var toppings;
-var menu;
-var menuText;
-var menuIngredients = "";
-var level = 1;
-var menuIngredientsArray = [];
-var ingredientsCollected = "";
-var pizzaArray = [];
-var nextLevelText;
-var emitter;
-var toppingsCollected;
-var win;
-var tryAgain;
-var tryAgainButton;
-var resetLevel;
-
 // load images of toppings + chef
 function preload () {
     game.load.image('redwhite', 'images/redwhite.jpg');
@@ -34,103 +15,6 @@ function preload () {
     game.load.image('nextArrow', 'images/nextArrow.png');
 }
 
-// clear the menu (between levels)
-function clearMenu () {
-    menuIngredientsArray = [];
-    menuIngredients = "";
-}
-
-// clear your collected toppings
-function clearPizzaArray () {
-    pizzaArray = [];
-    toppingsCollected = "";
-    ingredientsCollected = "";
-}
-
-// build menu according to level
-function buildMenu () {
-    switch (level) {
-        case 1:
-            menuIngredientsArray = ["cheese", "pepperoni"];
-            break;
-        case 2:
-            menuIngredientsArray = ["cheese", "mushroom", "pepper"];
-            break;
-        case 3:
-            menuIngredientsArray = ["cheese", "pepperoni", "olives", "onion", "basil"];
-    }
-    menuIngredientsArray.forEach(function(item) {
-        menuIngredients += "~ " + item + "\n";
-    });
-    // writes menu ingredints onto page
-    menu = game.add.text(20, 100, menuIngredients, {font: '30px Parisienne, cursive', fill: 'black'});
-}
-
-// record which toppings got "collected"
-function addToPizza (player, topping) {
-    topping.kill();    
-    // add green check mark next to cheese menu item
-    if (pizzaArray.length < menuIngredientsArray.length) {
-        pizzaArray.push(topping.key); 
-        ingredientsCollected += "~ " + topping.key + "\n";
-    }
-    if (pizzaArray.includes(topping.key)) {
-        toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'}
-    }
-    // if (menuIngredientsArray.includes(topping.key) && (pizzaArray.indexOf(topping.key) === pizzaArray.lastIndexOf(topping.key))) {
-    //      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'}); 
-    // } else {
-    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
-    // }
-    checkWin();
-}
-
-// go on to next level with click of a button
-function goToNextLevel() {
-    clearMenu();
-    clearPizzaArray();
-    level +=1;
-    console.log("level is now " + level);
-    create();
-} 
-
-// reset the menu according to level
-function resetLevel() {
-    clearMenu();
-    clearPizzaArray();
-    // level = level;
-    create();
-    console.log("level is now " + level);
-}
-
-// check for a win or lose, display respective message on the screen
-function checkWin (){
-    if (pizzaArray.length === menuIngredientsArray.length) {
-            if (level <=2 && pizzaArray.toString() === menuIngredientsArray.toString()) {
-                // console.log("pizzaArray = ", pizzaArray);
-                // console.log('menuIngredientsArray = ', menuIngredientsArray);
-                // console.log("You win!");
-                button = game.add.button(850, 400, 'nextArrow', goToNextLevel, this, null);
-                win = game.add.text(game.world.centerX-170, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
-                emitter.destroy(true);
-            } else if 
-                (level === 3 && pizzaArray.toString() === menuIngredientsArray.toString()) {
-                // console.log("pizzaArray = ", pizzaArray);
-                // console.log('menuIngredientsArray = ', menuIngredientsArray);
-                // console.log("You win!");
-                button = game.add.button(10, 400, 'tryAgainArrow', goToNextLevel, this, null);
-                win = game.add.text(game.world.centerX-400, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Graci!", {font: '50px cursive', fill: 'black'});
-                emitter.destroy(true);
-            } else {
-                // console.log("pizzaArray = ", pizzaArray);
-                // console.log('menuIngredientsArray = ', menuIngredientsArray);
-                tryAgain = game.add.text(game.world.centerX-200, game.world.centerY, 'Mamma Mia... Try Again!', {font: '40px cursive', fill: 'black'});
-                tryAgainButton = game.add.button(10, 400, 'tryAgainArrow', resetLevel, this, null);
-                emitter.destroy(true);
-            return;
-            }
-        }
-    }
 
 // create the game
 function create () {
@@ -138,15 +22,15 @@ function create () {
     game.add.tileSprite(0, 0, game.width, game.height, 'redwhite');
 
     // create chef and set his animations
-    player = game.add.sprite(100, 450, 'chef'); 
+    player = game.add.sprite(100, 450, 'chef');
     game.physics.arcade.enable(player);
-    player.body.gravity.y = 300; 
+    player.body.gravity.y = 300;
     player.body.collideWorldBounds = true;
 
     player.animations.add('left', true);
     player.animations.add('right', true);
     cursors = game.input.keyboard.createCursorKeys();
-  
+
     // create menu on screen
     menuText = game.add.text(20, 40, 'MENU',  { font: '35px cursive', fill: 'black' });
     buildMenu();
@@ -155,39 +39,11 @@ function create () {
 
     // Toppings fall from sky
     emitter = game.add.emitter(game.world.centerX, -200, 200);
-    function Emitter(topping) {
-        emitter.makeParticles(topping, [0], 10, true, false);
-        emitter.minParticleScale = 0.6;
-        emitter.maxParticleScale = 0.6;
-        emitter.gravity = 100;
-        emitter.flow(8000, 1000, 2, 80); // 2 particles emitted every 1000ms, each particle will live for 8000ms, will emit 80 particles in total then stop.
-        // emitter.on = true;
-    }
 
-    // decides which toppings fall from sky (and in what order)
-    function setToppingsToRain () { 
-        switch (level) {
-            case 1:
-                cheese = new Emitter('cheese');
-                pepperoni = new Emitter('pepperoni');
-                break;
-            case 2:
-                cheese = new Emitter('cheese');
-                pepperoni = new Emitter('pepperoni');
-                mushroom = new Emitter('mushroom');
-                cheese = new Emitter('cheese');
-                olives = new Emitter('olives');
-                pepper = new Emitter('pepper');
-                break;
-            case 3:
-                cheese = new Emitter('cheese');
-                pepperoni = new Emitter('pepperoni');
-                olives = new Emitter('olives');
-                onion = new Emitter('onion');
-                basil = new Emitter('basil');
-        }
-    }
+
     setToppingsToRain();
+    // writes menu ingredints onto page
+    menu = game.add.text(20, 100, menuIngredients, {font: '30px Parisienne, cursive', fill: 'black'});
 }
 
  // give chef ability to move right and left; set the "overlap" function
@@ -215,6 +71,6 @@ function update () {
 
 
 
-    
+
 
 
