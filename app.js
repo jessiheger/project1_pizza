@@ -10,11 +10,15 @@ var menuText;
 var menuIngredients = "";
 var level = 1;
 var menuIngredientsArray = [];
-var pizzaIngredients = "";
+var ingredientsCollected = "";
 var pizzaArray = [];
 var nextLevelText;
 var emitter;
 var toppingsCollected;
+var win;
+var tryAgain;
+var tryAgainButton;
+var resetLevel;
 
 function preload () {
     game.load.image('redwhite', 'images/redwhite.jpg');
@@ -35,6 +39,8 @@ function clearMenu () {
 
 function clearPizzaArray () {
     pizzaArray = [];
+    toppingsCollected = "";
+    ingredientsCollected = "";
 }
 
 function buildMenu () {
@@ -43,7 +49,7 @@ function buildMenu () {
             menuIngredientsArray = ["cheese", "pepperoni"];
             break;
         case 2:
-            menuIngredientsArray = ["cheese", "mushrooms", "pepper"];
+            menuIngredientsArray = ["cheese", "mushroom", "pepper"];
             break;
         case 3:
             menuIngredientsArray = ["cheese", "pepperoni", "olives", "onion", "basil"];
@@ -60,18 +66,19 @@ function buildMenu () {
 function addToPizza (player, topping) {
     topping.kill();    
     // add green check mark next to cheese menu item
-    if (pizzaArray.length !== menuIngredientsArray.length) {
-            pizzaArray.push(topping.key); 
-    }
-    
-    pizzaArray.forEach(function(item) {
-        pizzaIngredients += "~ " + item + "\n";
-    });
+    if (pizzaArray.length < menuIngredientsArray.length) {
+        pizzaArray.push(topping.key); 
+            ingredientsCollected += "~ " + topping.key + "\n";
+    };
+    if (menuIngredientsArray.includes(topping.key)) {
+            toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
+    } else {
+            toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
 
-    toppingsCollected = game.add.text(20, 300, pizzaIngredients, {font: '30px Parisienne, cursive', fill: 'green'});
-
+    };
     checkWin();
-}
+    };
+// }
     // console.log(pizzaArray);
 
     // if (checkWin()) {
@@ -94,22 +101,32 @@ function goToNextLevel() {
     create();
 } 
 
-function checkWin (){
-    // if (menuIngredientsArray === pizzaArray) return true;
-    // if (menuIngredientsArray == null || pizzaArray == null) return false;
-    for (var i = 0; i <= pizzaArray.length; i++) {
-        if (pizzaArray.length >= menuIngredientsArray.length && pizzaArray[i] !== menuIngredientsArray[i]) {
-            console.log("Try again");
-            // console.log(pizzaArray);
-            // console.log(menuIngredientsArray)
-        } else if 
-            (pizzaArray.length === menuIngredientsArray.length && pizzaArray[i] === menuIngredientsArray[i]) {
-            console.log("Buon Apetito! Press the button to move to the next level.");
-            button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
-            }
-        
-    }
+function resetLevel() {
+    clearMenu();
+    clearPizzaArray();
+    level = level;
+    create();
+    console.log("level is now " + level);
 }
+
+function checkWin (){
+    if (pizzaArray.length === menuIngredientsArray.length) {
+            if (pizzaArray.toString() === menuIngredientsArray.toString()) {
+                // console.log("pizzaArray = ", pizzaArray);
+                // console.log('menuIngredientsArray = ', menuIngredientsArray);
+                // console.log("You win!");
+                button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
+                win = game.add.text(game.world.centerX-300, game.world.centerY-200, "Bravo! Click the button to move to the next level.", {font: '30px cursive', fill: 'black'});
+            } else {
+                // console.log("pizzaArray = ", pizzaArray);
+                // console.log('menuIngredientsArray = ', menuIngredientsArray);
+                tryAgain = game.add.text(game.world.centerX-300, game.world.centerY-150, 'Mamma Mia... Try Again!', {font: '30px cursive', fill: 'black'});
+                tryAgainButton = game.add.button(200, 500, 'button', resetLevel, this, null);
+            return;
+            }
+        }
+    }
+
 
 
 function create () {
@@ -125,23 +142,23 @@ function create () {
     player.animations.add('left', true);
     player.animations.add('right', true);
     cursors = game.input.keyboard.createCursorKeys();
-
-// Button to set next level + reset menu
-    // button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
   
 // create menu on screen
-    menuText = game.add.text(20, 40, 'MENU',  { font: '35px Parisienne, cursive', fill: 'black' });
+    menuText = game.add.text(20, 40, 'MENU',  { font: '35px cursive', fill: 'black' });
     buildMenu();
 
-    toppingsCollectedText = game.add.text(20, 250, "TOPPINGS COLLECTED",  { font: '35x Parisienne, cursive', fill: 'black' });
+    toppingsCollectedText = game.add.text(window.innerWidth-400, 40, "TOPPINGS COLLECTED",  { font: '30px cursive', fill: 'black' });
 
 // Toppings fall from sky
     emitter = game.add.emitter(game.world.centerX, -200, 200);
     function Emitter(topping) {
         emitter.makeParticles(topping, [0], 10, true, false);
+        emitter.minParticleScale = 0.6;
+        emitter.maxParticleScale = 0.6;
         emitter.gravity = 100;
-        emitter.flow(8000, 1000, 2, 50); // 2 particles emitted every 500ms, each particle will live for 8000ms, will emit 10 particles in total then stop.
+        emitter.flow(8000, 1000, 2, 80); // 2 particles emitted every 1000ms, each particle will live for 8000ms, will emit 50 particles in total then stop.
         // emitter.on = true;
+
     }
 
     function setToppingsToRain () { 
@@ -184,6 +201,9 @@ function update () {
     game.physics.arcade.overlap(player, emitter, addToPizza, null, this);
 }
 
+
+// TINT CHEF RED
+// player.tint=16000000 
 
 
 
