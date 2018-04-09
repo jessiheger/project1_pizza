@@ -41,19 +41,18 @@ function Emitter(topping) {
 function checkWin (){
   if (pizzaArray.length === menuIngredientsArray.length) {
     if (level <=2 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
-      win = game.add.text(game.world.centerX-350, game.world.centerY, "Molto bene! Well done! Click the button to move to the next level.", {font: '30px cursive', fill: 'black'});
-    } else if (level == 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
-      win = game.add.text(game.world.centerX-350, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Graci!", {font: '30px cursive', fill: 'black'});
+      button = game.add.button(850, 400, 'nextArrow', goToNextLevel, this, null);
+      win = game.add.text(game.world.centerX-170, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
+    } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
+      button = game.add.button(10, 400, 'tryAgainArrow', goToNextLevel, this, null);
+      win = game.add.text(game.world.centerX-350, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!", {font: '50px cursive', fill: 'black'});
     } else {
-      tryAgain = game.add.text(game.world.centerX-400, game.world.centerY, 'Mamma Mia... Try Again!', {font: '30px cursive', fill: 'black'});
-      tryAgainButton = game.add.button(200, 500, 'button', resetLevel, this, null);
+      tryAgain = game.add.text(game.world.centerX-200, game.world.centerY, 'Mamma Mia... Try Again!', {font: '40px cursive', fill: 'black'});
+      tryAgainButton = game.add.button(10, 400, 'tryAgainArrow', resetLevel, this, null);
     }
     game.paused = true;
   }
 }
-
 
 // clear the menu (between levels)
 function clearMenu () {
@@ -98,13 +97,34 @@ function addToPizza (player, topping) {
         pizzaArray.push(topping.key);
         ingredientsCollected += "~ " + topping.key + "\n";
     }
-    if (menuIngredientsArray.includes(topping.key)) {
-         toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
+    if (menuIngredientsArray.slice(0, pizzaArray.length-1) !== pizzaArray) {
+      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
     } else {
-        toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
+      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
     }
     checkWin();
 }
+
+
+
+    // checks if topping is already in pizzaArray
+    // if (pizzaArray.includes(topping.key)) {
+    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
+    // } 
+    // // checks if topping is included in menuArray
+    // if (menuArray.indexOf(topping.key) === -1) {
+    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
+    //   }
+    //  // checks if topping is added in correct order
+
+    
+
+    // if (menuIngredientsArray.includes(topping.key)) {
+    //      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
+    // } else {
+    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
+    // }
+
 
 // go on to next level with click of a button
 function goToNextLevel() {
