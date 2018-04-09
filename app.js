@@ -30,6 +30,8 @@ function preload () {
     game.load.image('onion', 'images/onion.png');
     game.load.image('pepper', 'images/pepper.png');
     game.load.image('pepperoni', 'images/pepperoni.png');
+    game.load.image('tryAgainArrow', 'images/tryAgainArrow.png');
+    game.load.image('nextArrow', 'images/nextArrow.png');
 }
 
 // clear the menu (between levels)
@@ -72,11 +74,14 @@ function addToPizza (player, topping) {
         pizzaArray.push(topping.key); 
         ingredientsCollected += "~ " + topping.key + "\n";
     }
-    if (menuIngredientsArray.includes(topping.key)) {
-         toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
-    } else {
-        toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
+    if (pizzaArray.includes(topping.key)) {
+        toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'}
     }
+    // if (menuIngredientsArray.includes(topping.key) && (pizzaArray.indexOf(topping.key) === pizzaArray.lastIndexOf(topping.key))) {
+    //      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'}); 
+    // } else {
+    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
+    // }
     checkWin();
 }
 
@@ -92,7 +97,6 @@ function goToNextLevel() {
 // reset the menu according to level
 function resetLevel() {
     clearMenu();
-    buildMenu();
     clearPizzaArray();
     // level = level;
     create();
@@ -106,21 +110,23 @@ function checkWin (){
                 // console.log("pizzaArray = ", pizzaArray);
                 // console.log('menuIngredientsArray = ', menuIngredientsArray);
                 // console.log("You win!");
-                button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
-                win = game.add.text(game.world.centerX-350, game.world.centerY, "Molto bene! Well done! Click the button to move to the next level.", {font: '30px cursive', fill: 'black'});
+                button = game.add.button(850, 400, 'nextArrow', goToNextLevel, this, null);
+                win = game.add.text(game.world.centerX-170, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
+                emitter.destroy(true);
             } else if 
-                (level =3 && pizzaArray.toString() === menuIngredientsArray.toString()) {
+                (level === 3 && pizzaArray.toString() === menuIngredientsArray.toString()) {
                 // console.log("pizzaArray = ", pizzaArray);
                 // console.log('menuIngredientsArray = ', menuIngredientsArray);
                 // console.log("You win!");
-                button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
-                win = game.add.text(game.world.centerX-350, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Graci!", {font: '30px cursive', fill: 'black'});
-
+                button = game.add.button(10, 400, 'tryAgainArrow', goToNextLevel, this, null);
+                win = game.add.text(game.world.centerX-400, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Graci!", {font: '50px cursive', fill: 'black'});
+                emitter.destroy(true);
             } else {
                 // console.log("pizzaArray = ", pizzaArray);
                 // console.log('menuIngredientsArray = ', menuIngredientsArray);
-                tryAgain = game.add.text(game.world.centerX-400, game.world.centerY, 'Mamma Mia... Try Again!', {font: '30px cursive', fill: 'black'});
-                tryAgainButton = game.add.button(200, 500, 'button', resetLevel, this, null);
+                tryAgain = game.add.text(game.world.centerX-200, game.world.centerY, 'Mamma Mia... Try Again!', {font: '40px cursive', fill: 'black'});
+                tryAgainButton = game.add.button(10, 400, 'tryAgainArrow', resetLevel, this, null);
+                emitter.destroy(true);
             return;
             }
         }
@@ -154,7 +160,7 @@ function create () {
         emitter.minParticleScale = 0.6;
         emitter.maxParticleScale = 0.6;
         emitter.gravity = 100;
-        emitter.flow(8000, 1000, 2, 80); // 2 particles emitted every 1000ms, each particle will live for 8000ms, will emit 50 particles in total then stop.
+        emitter.flow(8000, 1000, 2, 80); // 2 particles emitted every 1000ms, each particle will live for 8000ms, will emit 80 particles in total then stop.
         // emitter.on = true;
     }
 
