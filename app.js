@@ -111,16 +111,23 @@ function resetLevel() {
 
 function checkWin (){
     if (pizzaArray.length === menuIngredientsArray.length) {
-            if (pizzaArray.toString() === menuIngredientsArray.toString()) {
+            if (level <=2 && pizzaArray.toString() === menuIngredientsArray.toString()) {
                 // console.log("pizzaArray = ", pizzaArray);
                 // console.log('menuIngredientsArray = ', menuIngredientsArray);
                 // console.log("You win!");
                 button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
-                win = game.add.text(game.world.centerX-300, game.world.centerY-200, "Bravo! Click the button to move to the next level.", {font: '30px cursive', fill: 'black'});
+                win = game.add.text(game.world.centerX-350, game.world.centerY, "Molto bene! Well done! Click the button to move to the next level.", {font: '30px cursive', fill: 'black'});
+            } else if 
+                (level =3 && pizzaArray.toString() === menuIngredientsArray.toString()) {
+                // console.log("pizzaArray = ", pizzaArray);
+                // console.log('menuIngredientsArray = ', menuIngredientsArray);
+                // console.log("You win!");
+                button = game.add.button(900, 500, 'button', goToNextLevel, this, null);
+                win = game.add.text(game.world.centerX-350, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Gracia!", {font: '30px cursive', fill: 'black'});
             } else {
                 // console.log("pizzaArray = ", pizzaArray);
                 // console.log('menuIngredientsArray = ', menuIngredientsArray);
-                tryAgain = game.add.text(game.world.centerX-300, game.world.centerY-150, 'Mamma Mia... Try Again!', {font: '30px cursive', fill: 'black'});
+                tryAgain = game.add.text(game.world.centerX-400, game.world.centerY, 'Mamma Mia... Try Again!', {font: '30px cursive', fill: 'black'});
                 tryAgainButton = game.add.button(200, 500, 'button', resetLevel, this, null);
             return;
             }
