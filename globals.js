@@ -19,3 +19,6 @@ var resetLevel;
 var check;
 var ingredientPos = [];
 var indexOfMenuItem;
+var round;
+var levelDisplay = "";
+

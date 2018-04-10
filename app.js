@@ -36,6 +36,8 @@ function create () {
     menuText = game.add.text(20, 40, 'MENU',  { font: '50px cursive', fill: 'black' });
     buildMenu();
 
+    displayRound();
+
     // Toppings fall from sky
     emitter = game.add.emitter(game.world.centerX, -200, 200);
     setToppingsToRain();

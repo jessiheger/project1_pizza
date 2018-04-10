@@ -20,14 +20,27 @@ iframe {
 }
 
 h1 {
-	font-family: Parisienne;
+	font-family: Rochester;
 	text-align: center;
+	font-size: 80px;
 }
 
 p {
-	text-align: center;
+	text-align: left;
 }
 
-button {
-	text-align: center;
+#goal {
+	font-size: 30px;
+}
+.instructions {
+	/*text-align: left;*/
+}
+
+#div1{
+	background-color: pink;
+}
+
+form {
+	background-color: yellow;
+	display: center;
 }

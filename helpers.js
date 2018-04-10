@@ -41,13 +41,13 @@ function Emitter(topping) {
 function checkWin (){
   if (pizzaArray.length === menuIngredientsArray.length) {
     if (level <=2 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(game.width-300, 400, 'nextArrow', goToNextLevel, this, null);
+      button = game.add.button(game.width-400, 400, 'nextArrow', goToNextLevel, this, null);
       win = game.add.text(game.world.centerX-170, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(game.width-1000, 400, 'tryAgainArrow', goToNextLevel, this, null);
-      win = game.add.text(game.world.centerX-350, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!", {font: '50px cursive', fill: 'black'});
+      // button = game.add.button(game.width-900, 400, 'tryAgainArrow', goToNextLevel, this, null);
+      win = game.add.text(game.world.centerX-450, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!'", {font: '50px cursive', fill: 'black'});
     } else {
-      button = game.add.button(game.width-1000, 400, 'tryAgainArrow', resetLevel, this, null);
+      button = game.add.button(game.width-900, 400, 'tryAgainArrow', resetLevel, this, null);
       tryAgain = game.add.text(game.world.centerX-200, game.world.centerY, 'Mamma Mia... Try Again!', {font: '40px cursive', fill: 'black'});
     }
     game.paused = true;
@@ -61,6 +61,10 @@ function clearMenu () {
   // menu.text = "";
 }
 
+function clearRound () {
+  round = "";
+  // menu.text = "";
+}
 // clear your collected toppings
 function clearPizzaArray () {
     pizzaArray = [];
@@ -70,7 +74,6 @@ function clearPizzaArray () {
 
 // build menu according to level
 function buildMenu () {
-  console.log('test');
     switch (level) {
         case 1:
             menuIngredientsArray = ["cheese", "pepperoni"];
@@ -88,12 +91,26 @@ function buildMenu () {
       })
     };
 
+function displayRound() {
+   switch (level) {
+        case 1:
+            levelDisplay = 'Pizza 1 of 3'
+            break;
+        case 2:
+            levelDisplay = 'Pizza 2 of 3'
+            break;
+        case 3:
+            levelDisplay = 'Pizza 3 of 3'
+    }
+    round = game.add.text(game.width-250, 40, levelDisplay,  { font: '30px cursive', fill: 'black' });
+  };
+
 function addCheck (topping) {
   indexOfMenuItem = (menuIngredientsArray.indexOf(topping));
   console.log(60 + (indexOfMenuItem +1)*40);
-  game.add.image(180, (60 + (indexOfMenuItem +1)*40), 'checkmark'); 
-  // check = game.add.sprite((menu.position.x + 20), (menu.position.y), 'checkmark', null, this, null);
-}
+  game.add.image(180, (60 + (indexOfMenuItem +1)*40), 'checkmark');
+  }
+
 
 function chefRed() {
   player.tint=16000000;
@@ -122,6 +139,8 @@ function goToNextLevel() {
   game.paused = false;
   clearMenu();
   buildMenu();
+  clearRound();
+  displayRound();
   clearPizzaArray();
   level +=1;
   console.log("level is now " + level);
