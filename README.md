@@ -1,10 +1,12 @@
-# project1_pizza
-Pizza Game - Project 1
+# Pizza Time! - Project 1
 
-# Wireframes
-
-# Project Proposal
+## Project Proposal
 A single player game in which the goal is to "build a pizza" by catching certain toppings and avoiding others. Each round is complete once you've succesfully built the pizza prescribed by the menu on the screen. 
+
+## Wireframes
+![image](https://user-images.githubusercontent.com/13025907/38571231-c949347a-3ca4-11e8-898d-36f6b8fe4938.png)
+![image](https://user-images.githubusercontent.com/13025907/38571237-d1806096-3ca4-11e8-9b81-65efdab3708b.png)
+
 
 ## Game Objective
 As Player 1 (i.e. the Chef), your goal is to collect the toppings that are prescribed on the menu - in the order they are listed - and dodge the toppings that are not listed. You will have three pizzas in total to "build", and each round, the toppings will be progressively more complex.
