@@ -42,7 +42,7 @@ function displayNextButton() {
 }
 
 function displayNextMessage() {
-  win = game.add.text(game.world.centerX-150, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
+  win = game.add.text(game.world.centerX-180, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
 }
 
 function displayTryAgainButton() {
@@ -50,7 +50,7 @@ function displayTryAgainButton() {
 }
 
 function displayTryAgainMessage() {
-  win = game.add.text(game.world.centerX-300, game.world.centerY, "Mamma Mia... Try Again!", {font: '40px cursive', fill: 'black'});
+  win = game.add.text(game.world.centerX-280, game.world.centerY, "Mamma Mia... Try Again!", {font: '40px cursive', fill: 'black'});
 }
 
 function displayWinMessage() {
