@@ -13,14 +13,14 @@ A single player game in which the goal is to "build a pizza" by catching certain
 As Player 1 (i.e. the Chef), your goal is to collect the toppings that are prescribed on the menu - in the order they are listed - and dodge the toppings that are not listed. You will have three pizzas in total to "build", and each round, the toppings will be progressively more complex.
 
 ### Instructions
-- Use *left* and *right* arrows to move your crust back and forth across the screen.
-- Catch only the toppings that are prescribed by a "menu" that is displayed on the screen.
+- Use *left* and *right* arrows to move the chef back and forth across the screen.
+- Catch only the toppings (one at at time!) that are prescribed by the menu on the screen.
 - Dodge the toppings that you don't want.
 
 ### How to win/ move onto the next level
-- Stack the correct toppings until your pizza is complete. 
+- Catch the correct toppings until your pizza is complete. 
 ### How to lose
-- Stack an incorrect topping (by neglecting to dodge it).
+- Catch an incorrect topping (by neglecting to dodge it).
 
 ### Technologies and Tools Used
 - Pizza Time was created with HTML, CSS, and JavaScript.
