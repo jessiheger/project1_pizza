@@ -30,8 +30,9 @@ As Player 1 (i.e. the Chef), your goal is to collect the toppings that are presc
 1. Find and download PNG files of the chef, each of the toppings, and the background.
 2. Program the chef to move back and forth across the screen.
 3. Use a JavaScript constructor to produce "emitters" (i.e. the toppings falling from the sky).
-4. 
+4. The menu and toppings collected are both stored into arrays
 
 ### If I had more time...
+- Add sound effects to the chef, (a positive sound (e.g. "Yahoo!" for a correct topping and a negative sound (e.g. "Oh no!" for an incorrect topping).
 
 ### Unsolved Problems
