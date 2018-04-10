@@ -37,18 +37,37 @@ function Emitter(topping) {
   // emitter.on = true;
 }
 
+function displayNextButton() {
+  button = game.add.button(game.width-400, 400, 'nextArrow', goToNextLevel, this, null);
+}
+
+function displayNextMessage() {
+  win = game.add.text(game.world.centerX-300, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
+}
+
+function displayTryAgainButton() {
+  button = game.add.button(game.width-900, 400, 'tryAgainArrow', goToNextLevel, this, null);
+}
+
+function displayTryAgainMessage() {
+  win = game.add.text(game.world.centerX-300, game.world.centerY, "Mamma Mia... Try Again!", {font: '40px cursive', fill: 'black'});
+}
+
+function displayWinMessage() {
+  win = game.add.text(game.world.centerX-450, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!'", {font: '50px cursive', fill: 'black'});
+}
+
 // check for a win or lose, display respective message on the screen
 function checkWin (){
   if (pizzaArray.length === menuIngredientsArray.length) {
     if (level <=2 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(game.width-400, 400, 'nextArrow', goToNextLevel, this, null);
-      win = game.add.text(game.world.centerX-300, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
+      displayNextButton();
+      displayNextMessage();
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(game.width-900, 400, 'tryAgainArrow', goToNextLevel, this, null);
-      win = game.add.text(game.world.centerX-450, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!'", {font: '50px cursive', fill: 'black'});
+      displayWinMessage();
     } else {
-      button = game.add.button(game.width-900, 400, 'tryAgainArrow', resetLevel, this, null);
-      tryAgain = game.add.text(game.world.centerX-300, game.world.centerY, 'Mamma Mia... Try Again!', {font: '40px cursive', fill: 'black'});
+      displayTryAgainButton();
+      displayTryAgainMessage();
     }
     game.paused = true;
   }
