@@ -5,6 +5,7 @@ A single player game in which the goal is to "build a pizza" by catching certain
 
 ## Wireframes
 ![image](https://user-images.githubusercontent.com/13025907/38572981-914e2116-3ca9-11e8-819c-0f889390e0d7.png)
+![image](https://user-images.githubusercontent.com/13025907/38573060-cb563646-3ca9-11e8-90d2-921cb33e155f.png)
 
 
 ## Game Objective
