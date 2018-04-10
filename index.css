@@ -85,14 +85,24 @@ hr:before {
 	border-radius: 10px;
 	padding: 10px;
 	background-color: #c31e1e;
+}
 
+#link:hover {
+	background-color: red;
+	cursor: pointer;
+
+}
+
+#link:hover a{
+	color: black;
+	text-decoration: none;
 }
 
 a {
 	color: white;
 	font-family: 'Montserrat', sans-serif;
 	text-transform: uppercase;
-
+	font-weight: bold;
 }
 
 #instructionsBox {
