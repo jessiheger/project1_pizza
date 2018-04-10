@@ -16,3 +16,6 @@ var win;
 var tryAgain;
 var tryAgainButton;
 var resetLevel;
+var check;
+var ingredientPos = [];
+var indexOfMenuItem;

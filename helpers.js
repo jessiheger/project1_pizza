@@ -58,7 +58,7 @@ function checkWin (){
 function clearMenu () {
   menuIngredientsArray = [];
   menuIngredients = "";
-  menu.text = "";
+  // menu.text = "";
 }
 
 // clear your collected toppings
@@ -70,6 +70,7 @@ function clearPizzaArray () {
 
 // build menu according to level
 function buildMenu () {
+  console.log('test');
     switch (level) {
         case 1:
             menuIngredientsArray = ["cheese", "pepperoni"];
@@ -81,50 +82,47 @@ function buildMenu () {
             menuIngredientsArray = ["cheese", "pepperoni", "olives", "onion", "basil"];
     }
     menuIngredients = "";
-    menuIngredientsArray.forEach(function(item) {
-        menuIngredients += "~ " + item + "\n";
-    });
-    if(menu){
-      menu.text = menuIngredients;
-    }
+    menuIngredientsArray.forEach(function(item, i) {
+        // menuIngredients += "~ " + item;
+        game.add.text(20, 60 + (i+1)*40, "~ " + item, {font: '30px cursive', fill: 'black'});
+        ingredientPos.push(60 + (i+1)*40);
+      })
+    };
+    // if(menu){
+    //   menu.text = menuIngredients;
+    // }
+// }
+
+function addCheck (topping) {
+  indexOfMenuItem = (menuIngredientsArray.indexOf(topping));
+  console.log(60 + (indexOfMenuItem +1)*40);
+  game.add.image(170, (60 + (indexOfMenuItem +1)*40), 'checkmark'); 
+  // check = game.add.sprite((menu.position.x + 20), (menu.position.y), 'checkmark', null, this, null);
+}
+
+function chefRed() {
+  player.tint=16000000;
+  game.time.events.add(500, function() {
+    player.tint=16777215;
+  } , this);
 }
 
 // record which toppings got "collected"
 function addToPizza (player, topping) {
     topping.kill();
-    // add green check mark next to cheese menu item
     if (pizzaArray.length < menuIngredientsArray.length) {
         pizzaArray.push(topping.key);
         ingredientsCollected += "~ " + topping.key + "\n";
     }
-    if (menuIngredientsArray.slice(0, pizzaArray.length-1) !== pizzaArray) {
-      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
+    if (menuIngredientsArray.slice(0, pizzaArray.length).toString() !== pizzaArray.toString()) {
+      // toppingsCollected = game.add.text(window.innerWidth-200, 100, ingredientsCollected, {font: '30px cursive', fill: 'red'});
+      chefRed();
     } else {
-      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
+      // toppingsCollected = game.add.text(window.innerWidth-200, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
+      addCheck(topping.key);
     }
     checkWin();
 }
-
-
-
-    // checks if topping is already in pizzaArray
-    // if (pizzaArray.includes(topping.key)) {
-    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
-    // } 
-    // // checks if topping is included in menuArray
-    // if (menuArray.indexOf(topping.key) === -1) {
-    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
-    //   }
-    //  // checks if topping is added in correct order
-
-    
-
-    // if (menuIngredientsArray.includes(topping.key)) {
-    //      toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
-    // } else {
-    //     toppingsCollected = game.add.text(window.innerWidth-400, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'red'});
-    // }
-
 
 // go on to next level with click of a button
 function goToNextLevel() {
