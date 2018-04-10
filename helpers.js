@@ -46,7 +46,7 @@ function displayNextMessage() {
 }
 
 function displayTryAgainButton() {
-  button = game.add.button(game.width-900, 400, 'tryAgainArrow', goToNextLevel, this, null);
+  button = game.add.button(game.width-1000, 400, 'tryAgainArrow', goToNextLevel, this, null);
 }
 
 function displayTryAgainMessage() {
