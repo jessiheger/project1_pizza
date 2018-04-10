@@ -1,5 +1,7 @@
 # Pizza Time! - Project 1
 
+[**CLICK HERE TO PLAY!**](https://jessiheger.github.io/project1_pizza/)
+
 ## Project Proposal
 A single player game in which the goal is to "build a pizza" by catching certain toppings and avoiding others. Each round is complete once you've succesfully built the pizza prescribed by the menu on the screen. 
 
