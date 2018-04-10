@@ -41,7 +41,7 @@ function Emitter(topping) {
 function checkWin (){
   if (pizzaArray.length === menuIngredientsArray.length) {
     if (level <=2 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(game.width-200, 400, 'nextArrow', goToNextLevel, this, null);
+      button = game.add.button(game.width-100, 400, 'nextArrow', goToNextLevel, this, null);
       win = game.add.text(game.world.centerX-170, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
       button = game.add.button(game.width-900, 400, 'tryAgainArrow', goToNextLevel, this, null);
