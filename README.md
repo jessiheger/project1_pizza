@@ -4,8 +4,7 @@
 A single player game in which the goal is to "build a pizza" by catching certain toppings and avoiding others. Each round is complete once you've succesfully built the pizza prescribed by the menu on the screen. 
 
 ## Wireframes
-![image](https://user-images.githubusercontent.com/13025907/38571231-c949347a-3ca4-11e8-898d-36f6b8fe4938.png)
-![image](https://user-images.githubusercontent.com/13025907/38571237-d1806096-3ca4-11e8-9b81-65efdab3708b.png)
+![image](https://user-images.githubusercontent.com/13025907/38572981-914e2116-3ca9-11e8-819c-0f889390e0d7.png)
 
 
 ## Game Objective
