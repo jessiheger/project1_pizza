@@ -42,7 +42,7 @@ function displayNextButton() {
 }
 
 function displayNextMessage() {
-  win = game.add.text(game.world.centerX-400, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
+  win = game.add.text(game.world.centerX-250, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
 }
 
 function displayTryAgainButton() {
