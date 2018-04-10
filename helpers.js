@@ -33,7 +33,7 @@ function Emitter(topping) {
   emitter.minParticleScale = 0.6;
   emitter.maxParticleScale = 0.6;
   emitter.gravity = 100;
-  emitter.flow(8000, 1000, 2, 80); // 2 particles emitted every 1000ms, each particle will live for 8000ms, will emit 50 particles in total then stop.
+  emitter.flow(8000, 1000, 2, 80); // 2 particles emitted every 1000ms, each particle will live for 8000ms, will emit 80 particles in total then stop.
   // emitter.on = true;
 }
 
@@ -41,14 +41,14 @@ function Emitter(topping) {
 function checkWin (){
   if (pizzaArray.length === menuIngredientsArray.length) {
     if (level <=2 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(850, 400, 'nextArrow', goToNextLevel, this, null);
+      button = game.add.button(game.width-200, 400, 'nextArrow', goToNextLevel, this, null);
       win = game.add.text(game.world.centerX-170, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(10, 400, 'tryAgainArrow', goToNextLevel, this, null);
+      button = game.add.button(game.width-900, 400, 'tryAgainArrow', goToNextLevel, this, null);
       win = game.add.text(game.world.centerX-350, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!", {font: '50px cursive', fill: 'black'});
     } else {
+      button = game.add.button(game.width-900, 400, 'tryAgainArrow', resetLevel, this, null);
       tryAgain = game.add.text(game.world.centerX-200, game.world.centerY, 'Mamma Mia... Try Again!', {font: '40px cursive', fill: 'black'});
-      tryAgainButton = game.add.button(10, 400, 'tryAgainArrow', resetLevel, this, null);
     }
     game.paused = true;
   }
@@ -83,20 +83,15 @@ function buildMenu () {
     }
     menuIngredients = "";
     menuIngredientsArray.forEach(function(item, i) {
-        // menuIngredients += "~ " + item;
         game.add.text(20, 60 + (i+1)*40, "~ " + item, {font: '30px cursive', fill: 'black'});
         ingredientPos.push(60 + (i+1)*40);
       })
     };
-    // if(menu){
-    //   menu.text = menuIngredients;
-    // }
-// }
 
 function addCheck (topping) {
   indexOfMenuItem = (menuIngredientsArray.indexOf(topping));
   console.log(60 + (indexOfMenuItem +1)*40);
-  game.add.image(170, (60 + (indexOfMenuItem +1)*40), 'checkmark'); 
+  game.add.image(180, (60 + (indexOfMenuItem +1)*40), 'checkmark'); 
   // check = game.add.sprite((menu.position.x + 20), (menu.position.y), 'checkmark', null, this, null);
 }
 
@@ -115,10 +110,8 @@ function addToPizza (player, topping) {
         ingredientsCollected += "~ " + topping.key + "\n";
     }
     if (menuIngredientsArray.slice(0, pizzaArray.length).toString() !== pizzaArray.toString()) {
-      // toppingsCollected = game.add.text(window.innerWidth-200, 100, ingredientsCollected, {font: '30px cursive', fill: 'red'});
       chefRed();
     } else {
-      // toppingsCollected = game.add.text(window.innerWidth-200, 100, ingredientsCollected, {font: '30px Parisienne, cursive', fill: 'green'});
       addCheck(topping.key);
     }
     checkWin();

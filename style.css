@@ -15,6 +15,9 @@
 	position: absolute;
 }
 
+iframe {
+	display: none;
+}
 
 h1 {
 

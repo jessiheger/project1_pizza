@@ -33,18 +33,12 @@ function create () {
     cursors = game.input.keyboard.createCursorKeys();
 
     // create menu on screen
-    menuText = game.add.text(20, 40, 'MENU',  { font: '35px cursive', fill: 'black' });
+    menuText = game.add.text(20, 40, 'MENU',  { font: '50px cursive', fill: 'black' });
     buildMenu();
-
-    // toppingsCollectedText = game.add.text(window.innerWidth-400, 40, "TOPPINGS COLLECTED",  { font: '30px cursive', fill: 'black' });
 
     // Toppings fall from sky
     emitter = game.add.emitter(game.world.centerX, -200, 200);
-
-
     setToppingsToRain();
-    // writes menu ingredints onto page
-    // menu = game.add.text(20, 100, menuIngredients, {font: '30px Parisienne, cursive', fill: 'black'});
 }
 
  // give chef ability to move right and left; set the "overlap" function
@@ -63,12 +57,8 @@ function update () {
 
 
 // STRETCH GOALS
-// tint chef red when he hits unwated topping; tint him green when hits wanted topping
-    // - player.tint=16000000 (red)
-    // - 16777215 (back to normal)
 // Have chef bounce when waiting
-// Add topping image to basket once collected
-// emit all toppings at once/randomly, not in waves
+
 
 
 
