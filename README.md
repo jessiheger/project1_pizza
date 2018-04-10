@@ -8,6 +8,9 @@ A single player game in which the goal is to "build a pizza" by catching certain
 
 ![image](https://user-images.githubusercontent.com/13025907/38572981-914e2116-3ca9-11e8-819c-0f889390e0d7.png)
 
+![screen shot 2018-04-10 at 10 51 28 am](https://user-images.githubusercontent.com/13025907/38574254-35b48c1a-3cad-11e8-96c7-061d63132178.png)
+
+
 
 ## Game Objective
 As Player 1 (i.e. the Chef), your goal is to collect the toppings that are prescribed on the menu - in the order they are listed - and dodge the toppings that are not listed. You will have three pizzas in total to "build", and each round, the toppings will be progressively more complex.
