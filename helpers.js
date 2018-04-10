@@ -44,10 +44,10 @@ function checkWin (){
       button = game.add.button(game.width-100, 400, 'nextArrow', goToNextLevel, this, null);
       win = game.add.text(game.world.centerX-170, game.world.centerY, "Molto bene! Well done!", {font: '40px cursive', fill: 'black'});
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      button = game.add.button(game.width-900, 400, 'tryAgainArrow', goToNextLevel, this, null);
+      button = game.add.button(game.width-800, 400, 'tryAgainArrow', goToNextLevel, this, null);
       win = game.add.text(game.world.centerX-350, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!", {font: '50px cursive', fill: 'black'});
     } else {
-      button = game.add.button(game.width-900, 400, 'tryAgainArrow', resetLevel, this, null);
+      button = game.add.button(game.width-800, 400, 'tryAgainArrow', resetLevel, this, null);
       tryAgain = game.add.text(game.world.centerX-200, game.world.centerY, 'Mamma Mia... Try Again!', {font: '40px cursive', fill: 'black'});
     }
     game.paused = true;
