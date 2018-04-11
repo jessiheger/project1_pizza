@@ -162,6 +162,7 @@ function goToNextLevel() {
   level +=1;
   console.log("level is now " + level);
   create();
+  update();
 }
 
 // reset the menu according to level
@@ -172,4 +173,5 @@ function resetLevel() {
   console.log("level is now " + level);
   game.paused = false;
   create();
+  update();
 }
