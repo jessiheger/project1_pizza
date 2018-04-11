@@ -172,8 +172,15 @@ function resetLevel() {
   clearMenu();
   buildMenu();
   clearRound();
-  displayRound();
   clearPizzaArray();
+  if (level === 1) {
+    level = 1;
+  } else if (level = 2) {
+    level = 2;
+  } else if (level === 3) {
+    level = 3;
+  }
+  displayRound();
   create();
   console.log("level is now " + level);
 }
