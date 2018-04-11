@@ -54,6 +54,7 @@ hr {
   border-color: #black; 
   border-width: 3px 0 0 0; 
   border-radius: 20px; 
+  margin-bottom: -20px;
 } 
 hr:before { 
   display: block; 
@@ -70,6 +71,8 @@ hr:before {
 	font-size: 30px;
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 .instructions {
 	text-align: center;
