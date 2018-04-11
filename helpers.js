@@ -57,6 +57,13 @@ function displayWinMessage() {
   win = game.add.text(game.world.centerX-450, game.world.centerY, "BRAVISIMO! You did it! Chef says 'Grazie!'", {font: '50px cursive', fill: 'black'});
 }
 
+function chefRed() {
+  player.tint=16000000;
+  game.time.events.add(500, function() {
+    player.tint=16777215;
+  } , this);
+}
+
 // check for a win or lose, display respective message on the screen
 function checkWin (){
   if (pizzaArray.length === menuIngredientsArray.length) {
@@ -131,12 +138,12 @@ function addCheck (topping) {
   game.add.image(180, (60 + (indexOfMenuItem +1)*40), 'checkmark');
   }
 
-function chefRed() {
-  player.tint=16000000;
-  game.time.events.add(500, function() {
-    player.tint=16777215;
-  } , this);
-}
+// function chefRed() {
+//   player.tint=16000000;
+//   game.time.events.add(500, function() {
+//     player.tint=16777215;
+//   } , this);
+// }
 
 // record which toppings got "collected"
 function addToPizza (player, topping) {
