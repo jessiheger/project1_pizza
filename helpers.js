@@ -162,10 +162,6 @@ function goToNextLevel() {
   level +=1;
   console.log("level is now " + level);
   create();
-  buildMenu();
-  displayRound();
-  emitter = game.add.emitter(game.world.centerX, -200, 200);
-  setToppingsToRain();
 }
 
 // reset the menu according to level
@@ -176,8 +172,4 @@ function resetLevel() {
   console.log("level is now " + level);
   game.paused = false;
   create();
-  buildMenu();
-  displayRound();
-  emitter = game.add.emitter(game.world.centerX, -200, 200);
-  setToppingsToRain();
 }
