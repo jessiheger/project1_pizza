@@ -51,6 +51,7 @@ function update () {
         player.body.velocity.x = 400;
     } else {
         player.animations.stop();
+        player.body.bounce.y = 1;
     }
     game.physics.arcade.overlap(player, emitter, addToPizza, null, this);
 }
