@@ -65,7 +65,7 @@ function checkWin (){
       displayNextMessage();
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
       displayWinMessage();
-    } else {
+    } else if (pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
       chefRed();
       displayTryAgainButton();
       displayTryAgainMessage();
@@ -161,14 +161,10 @@ function goToNextLevel() {
   clearPizzaArray();
   level +=1;
   console.log("level is now " + level);
-  // create();
-   buildMenu();
-
-    displayRound();
-
-    // Toppings fall from sky
-    emitter = game.add.emitter(game.world.centerX, -200, 200);
-    setToppingsToRain();
+  buildMenu();
+  displayRound();
+  emitter = game.add.emitter(game.world.centerX, -200, 200);
+  setToppingsToRain();
 }
 
 // reset the menu according to level
@@ -177,13 +173,9 @@ function resetLevel() {
   clearMenu();
   clearRound();
   clearPizzaArray();
-  // create();
   console.log("level is now " + level);
-   buildMenu();
-
-    displayRound();
-
-    // Toppings fall from sky
-    emitter = game.add.emitter(game.world.centerX, -200, 200);
-    setToppingsToRain();
+  buildMenu();
+  displayRound();
+  emitter = game.add.emitter(game.world.centerX, -200, 200);
+  setToppingsToRain();
 }
