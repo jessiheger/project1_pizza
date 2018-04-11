@@ -34,6 +34,7 @@ function create () {
 
     // create menu on screen
     menuText = game.add.text(20, 40, 'MENU',  { font: '50px cursive', fill: 'black' });
+    level = 1;
     buildMenu();
 
     displayRound();
