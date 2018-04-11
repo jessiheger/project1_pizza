@@ -133,7 +133,7 @@ function addCheck (topping) {
 
 function chefRed() {
   player.tint=16000000;
-  game.time.events.add(500, function() {
+  game.time.events.add(250, function() {
     player.tint=16777215;
   } , this);
 }
