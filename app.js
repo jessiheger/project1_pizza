@@ -34,6 +34,11 @@ function create () {
 
     // create menu on screen
     menuText = game.add.text(20, 40, 'MENU',  { font: '50px cursive', fill: 'black' });
+    buildMenu();
+    displayRound();
+    emitter = game.add.emitter(game.world.centerX, -200, 200);
+    setToppingsToRain()
+
 }
 
  // give chef ability to move right and left; set the "overlap" function
