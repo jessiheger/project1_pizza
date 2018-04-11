@@ -5,7 +5,7 @@ var toppings;
 var menu;
 var menuText;
 var menuIngredients = "";
-var level;
+var level = 1;
 var menuIngredientsArray = [];
 var ingredientsCollected = "";
 var pizzaArray = [];
