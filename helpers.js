@@ -170,11 +170,11 @@ function goToNextLevel() {
 
 // reset the menu according to level
 function resetLevel() {
-  game.paused = false;
   clearMenu();
   clearRound();
   clearPizzaArray();
   console.log("level is now " + level);
+  game.paused = false;
   create();
   buildMenu();
   displayRound();
