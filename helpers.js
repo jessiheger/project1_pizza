@@ -65,8 +65,8 @@ function checkWin (){
       displayNextMessage();
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
       displayWinMessage();
-    } else if (pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
-      chefRed();
+    } else if (pizzaArray.sort().toString() !== menuIngredientsArray.sort().toString()) {
+      player.tint=16000000;
       displayTryAgainButton();
       displayTryAgainMessage();
     }
@@ -131,12 +131,12 @@ function addCheck (topping) {
   game.add.image(180, (60 + (indexOfMenuItem +1)*40), 'checkmark');
   }
 
-function chefRed() {
-  player.tint=16000000;
-  game.time.events.add(500, function() {
-    player.tint=16777215;
-  } , this);
-}
+// function chefRed() {
+//   player.tint=16000000;
+//   game.time.events.add(500, function() {
+//     player.tint=16777215;
+//   } , this);
+// }
 
 // record which toppings got "collected"
 function addToPizza (player, topping) {
