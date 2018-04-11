@@ -46,7 +46,7 @@ function displayNextMessage() {
 }
 
 function displayTryAgainButton() {
-  button = game.add.button(game.world.centerX-500, 400, 'tryAgainArrow', goToNextLevel, this, null);
+  button = game.add.button(game.world.centerX-500, 400, 'tryAgainArrow', resetLevel, this, null);
 }
 
 function displayTryAgainMessage() {
@@ -169,17 +169,17 @@ function goToNextLevel() {
 // reset the menu according to level
 function resetLevel() {
   game.paused = false;
-  clearMenu();
-  buildMenu();
-  clearRound();
-  clearPizzaArray();
   if (level === 1) {
     level = 1;
-  } else if (level = 2) {
+  } else if (level === 2) {
     level = 2;
   } else if (level === 3) {
     level = 3;
   }
+  clearMenu();
+  buildMenu();
+  clearRound();
+  clearPizzaArray();
   displayRound();
   create();
   console.log("level is now " + level);
