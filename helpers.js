@@ -157,9 +157,7 @@ function addToPizza (player, topping) {
 function goToNextLevel() {
   game.paused = false;
   clearMenu();
-  buildMenu();
   clearRound();
-  displayRound();
   clearPizzaArray();
   level +=1;
   console.log("level is now " + level);
@@ -168,19 +166,17 @@ function goToNextLevel() {
 
 // reset the menu according to level
 function resetLevel() {
-  game.paused = false;
-  if (level === 1) {
-    level = 1;
-  } else if (level === 2) {
-    level = 2;
-  } else if (level === 3) {
-    level = 3;
-  }
+  // game.paused = false;
+  // if (level === 1) {
+  //   level = 1;
+  // } else if (level === 2) {
+  //   level = 2;
+  // } else if (level === 3) {
+  //   level = 3;
+  // }
   clearMenu();
-  buildMenu();
   clearRound();
   clearPizzaArray();
-  displayRound();
   create();
   console.log("level is now " + level);
 }
