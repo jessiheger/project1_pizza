@@ -161,6 +161,7 @@ function goToNextLevel() {
   clearPizzaArray();
   level +=1;
   console.log("level is now " + level);
+  create();
   buildMenu();
   displayRound();
   emitter = game.add.emitter(game.world.centerX, -200, 200);
@@ -174,6 +175,7 @@ function resetLevel() {
   clearRound();
   clearPizzaArray();
   console.log("level is now " + level);
+  create();
   buildMenu();
   displayRound();
   emitter = game.add.emitter(game.world.centerX, -200, 200);
