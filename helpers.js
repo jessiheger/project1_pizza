@@ -66,7 +66,7 @@ function checkWin (){
       displayNextMessage();
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
       displayWinMessage();
-    } else if (pizzaArray.sort().toString() !== menuIngredientsArray.sort().toString()) {
+    } else {
       displayTryAgainButton();
       displayTryAgainMessage();
     }
