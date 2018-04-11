@@ -161,22 +161,29 @@ function goToNextLevel() {
   clearPizzaArray();
   level +=1;
   console.log("level is now " + level);
-  create();
+  // create();
+   buildMenu();
+
+    displayRound();
+
+    // Toppings fall from sky
+    emitter = game.add.emitter(game.world.centerX, -200, 200);
+    setToppingsToRain();
 }
 
 // reset the menu according to level
 function resetLevel() {
   game.paused = false;
-  // if (level === 1) {
-  //   level = 1;
-  // } else if (level === 2) {
-  //   level = 2;
-  // } else if (level === 3) {
-  //   level = 3;
-  // }
   clearMenu();
   clearRound();
   clearPizzaArray();
-  create();
+  // create();
   console.log("level is now " + level);
+   buildMenu();
+
+    displayRound();
+
+    // Toppings fall from sky
+    emitter = game.add.emitter(game.world.centerX, -200, 200);
+    setToppingsToRain();
 }
