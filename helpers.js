@@ -66,6 +66,7 @@ function checkWin (){
     } else if (level === 3 && pizzaArray.sort().toString() === menuIngredientsArray.sort().toString()) {
       displayWinMessage();
     } else {
+      chefRed();
       displayTryAgainButton();
       displayTryAgainMessage();
     }
@@ -130,7 +131,6 @@ function addCheck (topping) {
   game.add.image(180, (60 + (indexOfMenuItem +1)*40), 'checkmark');
   }
 
-
 function chefRed() {
   player.tint=16000000;
   game.time.events.add(500, function() {
@@ -171,6 +171,8 @@ function resetLevel() {
   game.paused = false;
   clearMenu();
   buildMenu();
+  clearRound();
+  displayRound();
   clearPizzaArray();
   create();
   console.log("level is now " + level);
